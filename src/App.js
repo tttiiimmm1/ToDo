@@ -5,6 +5,7 @@ import Todo from "./Todo";
 export default function App() {
   const [currentTodo, setCurrentTodo] = useState("");
   const [allTodos, setAllTodos] = useState([]);
+
   return (
     //key for uniquely identifying array items
     <>
@@ -14,7 +15,7 @@ export default function App() {
         setAllTodos={setAllTodos}
       />
       {allTodos.map((todo, i) => (
-        <Todo text={todo} key={i} />
+        <Todo text={todo} key={i} listKey={i} setAllTodos={setAllTodos} />
       ))}
     </>
   );
