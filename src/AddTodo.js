@@ -6,6 +6,7 @@ export default function AddTodo({ currentTodo, setCurrentTodo, setAllTodos }) {
   };
   const handleSubmit = () => {
     setAllTodos((prevTodo) => [...prevTodo, currentTodo]);
+    setCurrentTodo("");
   };
   return (
     <>
