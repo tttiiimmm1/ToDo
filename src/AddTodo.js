@@ -5,8 +5,10 @@ export default function AddTodo({ currentTodo, setCurrentTodo, setAllTodos }) {
     setCurrentTodo(e.target.value);
   };
   const handleSubmit = () => {
-    setAllTodos((prevTodo) => [...prevTodo, currentTodo]);
-    setCurrentTodo("");
+    if (currentTodo !== "") {
+      setAllTodos((prevTodo) => [...prevTodo, currentTodo]);
+      setCurrentTodo("");
+    }     
   };
   return (
     <>
