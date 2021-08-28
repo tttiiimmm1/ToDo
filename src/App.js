@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import AddTodo from "./AddTodo";
 import Todo from "./Todo";
+import "./index.css";
 
 export default function App() {
   const [currentTodo, setCurrentTodo] = useState("");

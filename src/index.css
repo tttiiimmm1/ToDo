@@ -48,3 +48,103 @@ ol, ul {
 .game-info {
   margin-left: 20px;
 }
+
+.add-todo {
+  left: 30px;
+}
+
+.task {
+  display: flex;
+  position: relative;
+  width: 400px;
+  height: 80px;
+  left: 10px;
+  top: 10px;
+  margin: 10px;
+  padding: 5px;
+
+
+  background: rgba(39, 129, 32, 0.3);
+  border: 1px solid #000000;
+  box-sizing: border-box;
+}
+
+.task-text {
+  width: 90%;
+}
+
+.task-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 60px;
+  
+}
+
+.task-end-button {
+  width: 30px;
+  height: 20px;
+  right: 10px;
+  top: 10px;
+}
+
+.delete {
+  font-size: 12px;
+  font-weight: 700;
+  background-color: white;
+  color: rgb(177, 4, 4);
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0.5px 1px rgba(177, 4, 4, 0.5);
+  width: 60%;
+  height: 25%;
+}
+
+.delete:hover {
+  font-size: 12px;
+  background-color: rgb(177, 4, 4);
+  color: white;
+  box-shadow: -0.5px -1px rgba(255, 254, 254, 0.5);
+  transition: 300ms;
+}
+
+.done {
+  font-size: 12px;
+  font-weight: 1000;
+  background-color: white;
+  color: rgb(0, 122, 51);
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0.5px 1px rgba(0, 122, 51, 0.5);
+  width: 60%;
+  height: 25%;
+}
+
+.done:hover {
+  font-size: 12px;
+  background-color: rgb(0, 122, 51);
+  color: white;
+  box-shadow: -0.5px -1px rgba(255, 254, 254, 0.5);
+  transition: 300ms;
+}
+
+.wip {
+  font-size: 12px;
+  font-weight: 700;
+  background-color: white;
+  color: rgb(230, 172, 14);
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0.5px 1px rgba(230, 172, 14, 0.5);
+  width: 60%;
+  height: 25%;
+}
+
+.wip:hover {
+  font-size: 12px;
+  background-color: rgb(230, 172, 14);
+  color: white;
+  box-shadow: -0.5px -1px rgba(255, 254, 254, 0.5);
+  transition: 300ms;
+}
