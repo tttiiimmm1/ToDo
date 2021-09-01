@@ -1,5 +1,7 @@
-## New (2021_08_26)
-- No empty tasks allowed
+## New (2021_09_01)
+- Two lists and done/not-done status
+- further design improvement
+- Can now add todo items with Enter key
 
 ## Future Updates
 - Add complete button for each list item/ add cross-out formatting
@@ -20,9 +22,12 @@
 - (git commit -m "message")
 - (git push)
 
-## Old (2021_08_26)
+## Old 
+### (2021_08_26)
 - Set up React App
 - Added input and button
 - Saved Todos as list
 - Delete input box on add
 - Add remove button for each list item
+### (2021_08_27)
+- No empty tasks allowed
