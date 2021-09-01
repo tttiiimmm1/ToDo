@@ -30,6 +30,10 @@ input {
   width: 40%;
 }
 
+.date-text {
+  font-size: 12px;
+}
+
 .subContainer {
   display: flex;
   flex-direction: column;

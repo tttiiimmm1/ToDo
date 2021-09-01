@@ -1,14 +1,13 @@
 ## New (2021_09_01)
-- Two lists and done/not-done status
+- Two lists and done/not-done status -> Done history
 - further design improvement
 - Can now add todo items with Enter key
+- Add due date function - Date added, but all buttons update
 
 ## Future Updates
 - Add complete button for each list item/ add cross-out formatting
-- Add due date function
 - Add paths to necessary files
 - Make it pretty
-- History
 - save tasks across open/close
 
 ## Quality of Life (2021_08_26)

@@ -1,6 +1,7 @@
 import React from "react";
 import "./index.css";
 import DefaultButton from "./DefaultButton.js";
+import "./AddTodo.js";
 
 export default function Todo({ text, status, listKey, setAllTodos }) {
   const handleDelete = () => {
@@ -12,7 +13,8 @@ export default function Todo({ text, status, listKey, setAllTodos }) {
       return newOutput;
     });
   };
-
+  const d = new Date();
+  const doneDate = d.getFullYear() + '/' + parseInt(d.getMonth()+1) + '/' + d.getDate() + ', ' + d.getHours() + ':' + d.getMinutes();
   const changeStatus = () => {
     setAllTodos((prev) => {
       const removed = prev.filter((todo) => todo.id !== listKey);
@@ -20,6 +22,7 @@ export default function Todo({ text, status, listKey, setAllTodos }) {
         text,
         status: !status,
         id: listKey,
+        doneDate: d.getFullYear() + '/' + parseInt(d.getMonth()+1) + '/' + d.getDate() + ', ' + d.getHours() + ':' + d.getMinutes(),
       };
       return [...removed, updatedTodo];
     });
@@ -29,7 +32,7 @@ export default function Todo({ text, status, listKey, setAllTodos }) {
     <div className={`task ${status ? "doneStatus" : "undone"}`}>
       <div className="task-text">
         <h1>{text}</h1>
-        <h1>{status}</h1>
+        <h1 className="date-text">{doneDate}</h1>
       </div>
       <div className="task-buttons">
         {status ? (
