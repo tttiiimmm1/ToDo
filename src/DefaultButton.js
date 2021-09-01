@@ -1,12 +1,10 @@
 import React from "react";
-import './index.css';
+import "./index.css";
 
 export default function DefaultButton({ type1, action, text }) {
-
-
-  return (      
-        <button className={type1} type="button" onClick={action}>
-          {text}
-        </button> 
+  return (
+    <button className={type1} type="button" onClick={action}>
+      {text}
+    </button>
   );
 }
