@@ -3,13 +3,24 @@ import AddTodo from "./AddTodo";
 import Todo from "./Todo";
 import "./index.css";
 import DisplayModal from "./DisplayModal";
+import AddModal from "./AddModal";
 import { getTimestamp } from "./helpers";
 
+const initialTodoState = {
+  title: "",
+  body: "",
+  status: false,
+  due_date: "",
+  timestamp: "",
+  id: "",
+};
+
 export default function App() {
-  const [currentTodo, setCurrentTodo] = useState("");
+  const [currentTodo, setCurrentTodo] = useState({});
   const [allTodos, setAllTodos] = useState([]);
-  const [displayedTodo, setDisplayedTodo] = useState({});
+  const [displayedTodo, setDisplayedTodo] = useState(initialTodoState);
   const [isDisplayModal, setIsDisplayModal] = useState(false);
+  const [isEditDisplayModal, setIsEditDisplayModal] = useState(false);
 
   const display = isDisplayModal ? (
     <DisplayModal
@@ -17,6 +28,29 @@ export default function App() {
       setIsDisplayModal={setIsDisplayModal}
       deleteTodo={() => deleteTodo(displayedTodo)}
       changeStatus={() => changeStatus(displayedTodo)}
+      setIsEditDisplayModal={setIsEditDisplayModal}
+    />
+  ) : (
+    ""
+  );
+  const addFullTodo = (title, body) => {
+    const newTodo = {
+      title: title,
+      body: body,
+      status: false,
+      due_date: "",
+      timestamp: getTimestamp(),
+      id: new Date() + title,
+    };
+    setAllTodos((prev) => [...prev, newTodo]);
+  };
+
+  const editDisplay = isEditDisplayModal ? (
+    <AddModal
+      todo={displayedTodo}
+      setIsDisplayModal={setIsEditDisplayModal}
+      changeStatus={() => changeStatus(displayedTodo)}
+      addFullTodo={addFullTodo}
     />
   ) : (
     ""
@@ -36,10 +70,9 @@ export default function App() {
     setAllTodos((prev) => {
       const removed = prev.filter((item) => item.id !== todo.id);
       const updatedTodo = {
-        text: todo.text,
-        status: !todo.status,
-        id: todo.id,
+        ...todo,
         timestamp: getTimestamp(),
+        status: !todo.status,
       };
       return [...removed, updatedTodo];
     });
@@ -52,8 +85,10 @@ export default function App() {
         currentTodo={currentTodo}
         setCurrentTodo={setCurrentTodo}
         setAllTodos={setAllTodos}
+        setIsEditDisplayModal={setIsEditDisplayModal}
       />
       {display}
+      {editDisplay}
       <div className="notDoneContainer basicContainer">
         <h1>Todo List</h1>
         <div className="subContainer">

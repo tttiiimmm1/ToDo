@@ -1,23 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
+import DefaultButton from "./DefaultButton";
 import { getTimestamp } from "./helpers";
 //{} -> deconstructor
 
-export default function AddTodo({ currentTodo, setCurrentTodo, setAllTodos }) {
+export default function AddTodo({ setAllTodos, setIsEditDisplayModal }) {
+  const [textInput, setTextInput] = useState("");
+
   const handleChange = (e) => {
-    setCurrentTodo(e.target.value);
+    setTextInput(e.target.value);
   };
 
   const handleSubmit = () => {
-    if (currentTodo !== "") {
-      const id = new Date() + currentTodo;
+    if (textInput !== "") {
+      const id = new Date() + textInput;
       const newTodo = {
-        text: currentTodo,
+        title: textInput,
+        body: "",
         status: false,
         id,
         timestamp: getTimestamp(),
       };
       setAllTodos((prevTodo) => [...prevTodo, newTodo]);
-      setCurrentTodo("");
+      setTextInput("");
     }
   };
 
@@ -31,13 +35,17 @@ export default function AddTodo({ currentTodo, setCurrentTodo, setAllTodos }) {
   return (
     <div className="inputBox">
       <input
-        value={currentTodo}
+        value={textInput}
         onChange={handleChange}
         onKeyPress={handleKeypress}
+        placeholder="Quick Add!"
       />
-      <button type="button" onClick={handleSubmit} className="addButton">
-        Add
-      </button>
+      <DefaultButton type1="addButton" action={handleSubmit} text="Add" />
+      <DefaultButton
+        type1="addTodoButton"
+        action={() => setIsEditDisplayModal((prev) => !prev)}
+        text="Add Todo"
+      />
     </div>
   );
 }

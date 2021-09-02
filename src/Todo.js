@@ -22,7 +22,7 @@ export default function Todo({
   return (
     <div className={`task ${todo.status ? "doneStatus" : "undone"}`}>
       <div className="task-text">
-        <h1>{todo.text}</h1>
+        <h1>{todo.title}</h1>
         {timestampConditional}
       </div>
       <div className="task-buttons">

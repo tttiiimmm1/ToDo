@@ -8,6 +8,10 @@ body {
   font: 14px "Century Gothic", Futura, sans-serif;
 }
 
+button {
+  cursor: pointer;
+}
+
 .app {
   width: 100vw;
   display: grid;
@@ -52,14 +56,17 @@ input {
   height: 25px;
   width: 8%;
   border: 1px rgba(0, 0, 0, 0.589) solid;
+  color: white;
+  font-weight: 700;
   border-left: none;
   border-radius: 0px 5px 5px 0px;
-  background-color: rgb(141, 194, 148);
+  background-color: rgb(0, 122, 51);
 }
 
 .addButton:hover {
   background-color: rgb(178, 221, 184);
-  transition: 300ms;
+  color: black;
+  transition: 500ms;
 }
 
 .basicContainer {
@@ -181,25 +188,31 @@ input {
 .modal-background {
   z-index: 10000;
   position: absolute;
-  background-color:rgba(133, 133, 133, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(133, 133, 133, 0.5);
   width: 100%;
   height: 100%;
 }
 
 .modal-card {
-  background-color: rgb(170, 214, 176);
+  background-color: rgb(255, 255, 255);
   border-radius: 8px;
   padding: 20px;
-  margin: 20px; 
+  margin: 20px;
+  height: 40%;
+  width: 60%;
+  max-width: 550px;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
-  display:grid;
+  display: grid;
 }
 
 .modal-row1 {
   height: 60px;
-  display:flex;
+  display: flex;
   width: 100%;
-  justify-content:space-between;
+  justify-content: space-between;
   padding-bottom: 5px;
 }
 
@@ -211,71 +224,76 @@ input {
   width: 10%;
   display: inline-flex;
   padding-right: 10px;
-  justify-content:space-between;
+  justify-content: space-between;
 }
 
 .modal-row2 {
-  background-color: rgba(133, 133, 133, 0.5);
   border-radius: 8px;
-  height:70px;
+  height: 80px;
   padding-bottom: 5px;
 }
 
 .modal-row2-text {
   font-size: 14px;
   padding: 10px;
+  background-color: rgb(240, 240, 240);
+}
+
+.modal-row2-textarea {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: rgb(240, 240, 240);
+  padding: 3px;
 }
 
 .modal-row3 {
   height: 40px;
-  
 }
 
 .modal-row4 {
-  width:100%;
-  height: 30px;
-  display:flex;
+  width: 100%;
+  height: 100%;
+  display: flex;
   justify-content: space-between;
-
+  align-items: flex-end;
 }
-.modal-done {
+
+.modal-button {
   font-size: 12px;
   font-weight: 1000;
-  background-color: white;
-  color: rgb(0, 122, 51);
-  border: none;
   border-radius: 5px;
-  box-shadow: 0.5px 1px rgba(0, 122, 51, 0.5);
   width: 25%;
-  height: 100%;
-  align-items:flex-start;
+  height: 70%;
+  font-weight: 700;
+}
+
+.modal-done {
+  background-color: rgb(0, 122, 51);
+  color: white;
+  border: 1px solid rgb(0, 122, 51);
+  box-shadow: 0.5px 1px rgba(0, 122, 51, 0.5);
+  align-items: flex-start;
 }
 
 .modal-done:hover {
-  font-size: 12px;
-  background-color: rgb(0, 122, 51);
-  color: white;
+  background-color: white;
+  color: rgb(0, 122, 51);
   box-shadow: -0.5px -1px rgba(255, 254, 254, 0.5);
   transition: 300ms;
 }
 
 .modal-delete {
-  font-size: 12px;
-  font-weight: 700;
-  background-color: white;
-  color: rgb(177, 4, 4);
-  border: none;
-  border-radius: 5px;
+  background-color: rgb(177, 4, 4);
+  color: white;
+  border: 1px solid rgb(177, 4, 4);
   box-shadow: 0.5px 1px rgba(177, 4, 4, 0.5);
-  width: 25%;
-  height: 100%;
-  align-items:flex-end;
+  align-items: flex-end;
 }
 
 .modal-delete:hover {
-  font-size: 12px;
-  background-color: rgb(177, 4, 4);
-  color: white;
+  color: rgb(177, 4, 4);
+  background-color: white;
   box-shadow: -0.5px -1px rgba(255, 254, 254, 0.5);
   transition: 300ms;
 }
@@ -288,12 +306,12 @@ input {
   border: none;
   width: 10%;
   height: 10%;
-  align-items:flex-end;
+  align-items: flex-end;
 }
 
 .modal-delete-2:hover {
   font-size: 12px;
-  color: white;
+  color: rgb(134, 134, 134);
   transition: 300ms;
 }
 
@@ -302,7 +320,7 @@ input {
   font-weight: 700;
   color: rgb(150, 150, 150);
   border: none;
-  background:none;
+  background: none;
   width: 25%;
   height: 25%;
 }
@@ -311,4 +329,13 @@ input {
   font-size: 12px;
   color: white;
   transition: 300ms;
+}
+
+.title_input {
+  border: none;
+  width: 100%;
+  background-color: rgb(240, 240, 240);
+  height: 40px;
+  font-size: large;
+  font-weight: 700;
 }
