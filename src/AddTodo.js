@@ -1,4 +1,5 @@
 import React from "react";
+import { getTimestamp } from "./helpers";
 //{} -> deconstructor
 
 export default function AddTodo({ currentTodo, setCurrentTodo, setAllTodos }) {
@@ -13,6 +14,7 @@ export default function AddTodo({ currentTodo, setCurrentTodo, setAllTodos }) {
         text: currentTodo,
         status: false,
         id,
+        timestamp: getTimestamp(),
       };
       setAllTodos((prevTodo) => [...prevTodo, newTodo]);
       setCurrentTodo("");
@@ -21,21 +23,19 @@ export default function AddTodo({ currentTodo, setCurrentTodo, setAllTodos }) {
 
   //Allow AddTodo to return on 'Enter' keypress
   const handleKeypress = (e) => {
-    if (e.key === 'Enter') {
-      return handleSubmit()
-    };
+    if (e.key === "Enter") {
+      return handleSubmit();
+    }
   };
 
   return (
     <div className="inputBox">
-      <input 
-        value={currentTodo} 
+      <input
+        value={currentTodo}
         onChange={handleChange}
-        onKeyPress={handleKeypress} />
-      <button 
-        type="button" 
-        onClick={handleSubmit} 
-        className="addButton">
+        onKeyPress={handleKeypress}
+      />
+      <button type="button" onClick={handleSubmit} className="addButton">
         Add
       </button>
     </div>

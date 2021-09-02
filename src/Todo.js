@@ -2,8 +2,15 @@ import React from "react";
 import "./index.css";
 import DefaultButton from "./DefaultButton.js";
 import "./AddTodo.js";
+import { getTimestamp } from "./helpers";
 
-export default function Todo({ text, status, listKey, setAllTodos }) {
+export default function Todo({
+  text,
+  status,
+  listKey,
+  timestamp,
+  setAllTodos,
+}) {
   const handleDelete = () => {
     setAllTodos((prevTodos) => {
       const newOutput = [];
@@ -13,8 +20,7 @@ export default function Todo({ text, status, listKey, setAllTodos }) {
       return newOutput;
     });
   };
-  const d = new Date();
-  const doneDate = d.getFullYear() + '/' + parseInt(d.getMonth()+1) + '/' + d.getDate() + ', ' + d.getHours() + ':' + d.getMinutes();
+
   const changeStatus = () => {
     setAllTodos((prev) => {
       const removed = prev.filter((todo) => todo.id !== listKey);
@@ -22,17 +28,23 @@ export default function Todo({ text, status, listKey, setAllTodos }) {
         text,
         status: !status,
         id: listKey,
-        doneDate: d.getFullYear() + '/' + parseInt(d.getMonth()+1) + '/' + d.getDate() + ', ' + d.getHours() + ':' + d.getMinutes(),
+        timestamp: getTimestamp(),
       };
       return [...removed, updatedTodo];
     });
   };
 
+  const timestampConditional = status ? (
+    <h1 className="date-text">{timestamp}</h1>
+  ) : (
+    ""
+  );
+
   return (
     <div className={`task ${status ? "doneStatus" : "undone"}`}>
       <div className="task-text">
         <h1>{text}</h1>
-        <h1 className="date-text">{doneDate}</h1>
+        {timestampConditional}
       </div>
       <div className="task-buttons">
         {status ? (

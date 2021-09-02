@@ -27,6 +27,7 @@ export default function App() {
                 status={todo.status}
                 listKey={todo.id}
                 setAllTodos={setAllTodos}
+                timestamp={todo.timestamp}
               />
             ))}
         </div>
@@ -43,6 +44,7 @@ export default function App() {
                 status={todo.status}
                 listKey={todo.id}
                 setAllTodos={setAllTodos}
+                timestamp={todo.timestamp}
               />
             ))}
         </div>
