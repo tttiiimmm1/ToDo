@@ -29,6 +29,7 @@ export default function App() {
       deleteTodo={() => deleteTodo(displayedTodo)}
       changeStatus={() => changeStatus(displayedTodo)}
       setIsEditDisplayModal={setIsEditDisplayModal}
+      setDisplayedTodo={setDisplayedTodo}
     />
   ) : (
     ""
@@ -43,14 +44,29 @@ export default function App() {
       id: new Date() + title,
     };
     setAllTodos((prev) => [...prev, newTodo]);
+    setDisplayedTodo({});
   };
 
+  const updateTodo = (todo, title, body) => {
+    const updatedTodo = {
+      ...todo,
+      title,
+      body,
+    };
+    setAllTodos((prev) => {
+      const removed = prev.filter((item) => item.id !== displayedTodo.id);
+      return [...removed, updatedTodo];
+    });
+    setDisplayedTodo({});
+  };
   const editDisplay = isEditDisplayModal ? (
     <AddModal
       todo={displayedTodo}
       setIsDisplayModal={setIsEditDisplayModal}
       changeStatus={() => changeStatus(displayedTodo)}
       addFullTodo={addFullTodo}
+      updateTodo={updateTodo}
+      setDisplayedTodo={setDisplayedTodo}
     />
   ) : (
     ""

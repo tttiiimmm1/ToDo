@@ -2,7 +2,13 @@ import React, { useState } from "react";
 import "./index.css";
 import DefaultButton from "./DefaultButton.js";
 
-export default function AddModal({ todo, setIsDisplayModal, addFullTodo }) {
+export default function AddModal({
+  todo,
+  setIsDisplayModal,
+  addFullTodo,
+  updateTodo,
+  setDisplayedTodo,
+}) {
   const [newTitle, setNewTitle] = useState(todo.title);
   const [newBody, setNewBody] = useState(todo.body);
 
@@ -10,10 +16,27 @@ export default function AddModal({ todo, setIsDisplayModal, addFullTodo }) {
     setNewBody("");
     setNewTitle("");
     setIsDisplayModal((prev) => !prev);
+    setDisplayedTodo({});
   };
 
-  const handleSave = () => {
+  const handleSubmit = () => {
+    if (todo.title) {
+      handleUpdateTodo();
+      return;
+    }
+    handleSaveFullTodo();
+    return;
+  };
+
+  const handleSaveFullTodo = () => {
     addFullTodo(newTitle, newBody);
+    clearInputs();
+  };
+
+  const handleUpdateTodo = () => {
+    const title = newTitle ? newTitle : todo.title;
+    const body = newBody ? newBody : todo.body;
+    updateTodo(todo, title, body);
     clearInputs();
   };
 
@@ -30,10 +53,7 @@ export default function AddModal({ todo, setIsDisplayModal, addFullTodo }) {
             />
           </div>
           <div className="modal-row1-buttons">
-            <button
-              className="modal-delete-2"
-              onClick={() => setIsDisplayModal((prev) => !prev)}
-            >
+            <button className="modal-delete-2" onClick={clearInputs}>
               X
             </button>
           </div>
@@ -55,7 +75,7 @@ export default function AddModal({ todo, setIsDisplayModal, addFullTodo }) {
         <div className="modal-row4">
           <DefaultButton
             type1="modal-done modal-button"
-            action={handleSave}
+            action={handleSubmit}
             text="Save"
           />
           <DefaultButton

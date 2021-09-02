@@ -8,20 +8,28 @@ export default function DisplayModal({
   deleteTodo,
   changeStatus,
   setIsEditDisplayModal,
+  setDisplayedTodo,
 }) {
   const handleDelete = () => {
     deleteTodo();
     setIsDisplayModal((prev) => !prev);
+    setDisplayedTodo({});
   };
 
   const handleChange = () => {
     changeStatus();
     setIsDisplayModal((prev) => !prev);
+    setDisplayedTodo({});
   };
 
   const swapModals = () => {
     setIsDisplayModal((prev) => !prev);
     setIsEditDisplayModal((prev) => !prev);
+  };
+
+  const handleClose = () => {
+    setIsDisplayModal((prev) => !prev);
+    setDisplayedTodo({});
   };
 
   return (
@@ -35,10 +43,7 @@ export default function DisplayModal({
             <button className="modal-wip" onClick={swapModals}>
               edit
             </button>
-            <button
-              className="modal-delete-2"
-              onClick={() => setIsDisplayModal((prev) => !prev)}
-            >
+            <button className="modal-delete-2" onClick={handleClose}>
               X
             </button>
           </div>
