@@ -4,18 +4,18 @@ import DefaultButton from "./DefaultButton.js";
 import "./AddTodo.js";
 import { getTimestamp } from "./helpers";
 
+
 export default function Todo({
-  text,
-  status,
-  listKey,
-  timestamp,
+  todo,
   setAllTodos,
+  setIsDisplayModal,
+  setDisplayedTodo,
 }) {
   const handleDelete = () => {
     setAllTodos((prevTodos) => {
       const newOutput = [];
       prevTodos.forEach((todo) => {
-        if (todo.id !== listKey) newOutput.push(todo);
+        if (todo.id !== todo.listKey) newOutput.push(todo);
       });
       return newOutput;
     });
@@ -23,36 +23,40 @@ export default function Todo({
 
   const changeStatus = () => {
     setAllTodos((prev) => {
-      const removed = prev.filter((todo) => todo.id !== listKey);
+      const removed = prev.filter((todo) => todo.id !== todo.listKey);
       const updatedTodo = {
-        text,
-        status: !status,
-        id: listKey,
+        todo: todo.text,
+        status: !todo.status,
+        id: todo.listKey,
         timestamp: getTimestamp(),
       };
       return [...removed, updatedTodo];
     });
   };
 
-  const timestampConditional = status ? (
-    <h1 className="date-text">{timestamp}</h1>
+  const timestampConditional = todo.status ? (
+    <h1 className="date-text">{todo.timestamp}</h1>
   ) : (
     ""
   );
-
+  const handleDisplayModal = () => {
+    setDisplayedTodo(todo)
+    setIsDisplayModal((prev)=>!prev)
+  }
   return (
-    <div className={`task ${status ? "doneStatus" : "undone"}`}>
+    <div className={`task ${todo.status ? "doneStatus" : "undone"}`}>
       <div className="task-text">
-        <h1>{text}</h1>
+        <h1>{todo.text}</h1>
         {timestampConditional}
       </div>
       <div className="task-buttons">
-        {status ? (
+        {todo.status ? (
           <DefaultButton type1="wip" action={changeStatus} text="?" />
         ) : (
           <DefaultButton type1="done" action={changeStatus} text="✓" />
         )}
         <DefaultButton type1="delete" action={handleDelete} text="X" />
+        <DefaultButton type1="delete" action={handleDisplayModal} text="Info" />
       </div>
     </div>
   );

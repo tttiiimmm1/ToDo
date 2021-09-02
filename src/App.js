@@ -2,11 +2,14 @@ import React, { useState } from "react";
 import AddTodo from "./AddTodo";
 import Todo from "./Todo";
 import "./index.css";
+import DisplayModal from "./DisplayModal";
 
 export default function App() {
   const [currentTodo, setCurrentTodo] = useState("");
   const [allTodos, setAllTodos] = useState([]);
-
+  const [displayedTodo, setDisplayedTodo] = useState({});
+  const [isDisplayModal, setIsDisplayModal] = useState(false);
+  const display = isDisplayModal ? <DisplayModal todo={displayedTodo}/> : "";
   return (
     //key for uniquely identifying array items
     <div className="app">
@@ -15,6 +18,7 @@ export default function App() {
         setCurrentTodo={setCurrentTodo}
         setAllTodos={setAllTodos}
       />
+      {display}
       <div className="notDoneContainer basicContainer">
         <h1>Todo List</h1>
         <div className="subContainer">
@@ -22,12 +26,11 @@ export default function App() {
             .filter((item) => !item.status)
             .map((todo) => (
               <Todo
-                text={todo.text}
+                todo={todo}
                 key={todo.id}
-                status={todo.status}
-                listKey={todo.id}
+                setDisplayedTodo = {setDisplayedTodo}
                 setAllTodos={setAllTodos}
-                timestamp={todo.timestamp}
+                setIsDisplayModal={setIsDisplayModal}
               />
             ))}
         </div>
@@ -39,12 +42,11 @@ export default function App() {
             .filter((item) => item.status)
             .map((todo) => (
               <Todo
-                text={todo.text}
+                todo={todo}
                 key={todo.id}
-                status={todo.status}
-                listKey={todo.id}
+                setDisplayedTodo = {setDisplayedTodo}
                 setAllTodos={setAllTodos}
-                timestamp={todo.timestamp}
+                setIsDisplayModal={setIsDisplayModal}
               />
             ))}
         </div>
