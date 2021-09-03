@@ -43,8 +43,10 @@ export default function App() {
       timestamp: getTimestamp(),
       id: new Date() + title,
     };
-    setAllTodos((prev) => [...prev, newTodo]);
-    setDisplayedTodo({});
+    if (title) {
+      setAllTodos((prev) => [...prev, newTodo]);
+      setDisplayedTodo({});
+    }
   };
 
   const updateTodo = (todo, title, body) => {
