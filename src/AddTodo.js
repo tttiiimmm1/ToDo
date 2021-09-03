@@ -34,17 +34,17 @@ export default function AddTodo({ setAllTodos, setIsEditDisplayModal }) {
 
   return (
     <div className="inputBox">
-      <input
-        value={textInput}
-        onChange={handleChange}
-        onKeyPress={handleKeypress}
-        placeholder="Quick Add!"
-      />
-      <DefaultButton type1="addButton" action={handleSubmit} text="Add" />
       <DefaultButton
         type1="addTodoButton"
         action={() => setIsEditDisplayModal((prev) => !prev)}
         text="Add Todo"
+      />
+      <DefaultButton type1="addButton" action={handleSubmit} text="Add" />
+      <input
+        value={textInput}
+        onChange={handleChange}
+        onKeyPress={handleKeypress}
+        placeholder="Quick Add! (Press Enter)"
       />
     </div>
   );
