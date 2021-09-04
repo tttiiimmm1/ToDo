@@ -63,9 +63,10 @@ export default function App() {
     };
     setAllTodos((prev) => {
       const removed = prev.filter((item) => item.id !== displayedTodo.id);
-      return [...removed, updatedTodo];
+      const newTodos = [...removed, updatedTodo];
+      setToStorage(newTodos);
+      return newTodos;
     });
-    setToStorage(allTodos);
     setDisplayedTodo({});
   };
   const editDisplay = isEditDisplayModal ? (
@@ -87,9 +88,10 @@ export default function App() {
       prevTodos.forEach((item) => {
         if (item.id !== todo.id) newOutput.push(item);
       });
+      setToStorage(newOutput);
       return newOutput;
     });
-    setToStorage(allTodos);
+    
   };
 
   const changeStatus = (todo) => {
@@ -100,9 +102,9 @@ export default function App() {
         timestamp: getTimestamp(),
         status: !todo.status,
       };
+      setToStorage([...removed, updatedTodo]);
       return [...removed, updatedTodo];
     });
-    setToStorage(allTodos);
   };
 
   return (
