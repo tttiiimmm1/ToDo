@@ -1,15 +1,19 @@
 export function getTimestamp() {
   const d = new Date();
+  const m = (d.getMonth() >= 10) ? d.getMonth() : '0' + d.getMonth();
+  const date = (d.getDate() >= 10) ? d.getDate() : '0' + d.getDate();
+  const h = (d.getHours() >= 10) ? d.getHours() : '0' + d.getHours();
+  const min = (d.getMinutes() >= 10) ? d.getMinutes() : '0' + d.getMinutes();
   const timestamp =
     d.getFullYear() +
     "/" +
-    parseInt(d.getMonth() + 1) +
+    m +
     "/" +
-    d.getDate() +
+    date +
     ", " +
-    d.getHours() +
+    h +
     ":" +
-    d.getMinutes();
+    min;
   return timestamp;
 }
 
