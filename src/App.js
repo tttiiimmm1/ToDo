@@ -36,6 +36,14 @@ export default function App() {
   ) : (
     ""
   );
+
+  /**
+   * Adds a todo to the allTodos state
+   * @param {String} title
+   * @param {String} body
+   * @return void
+   */
+
   const addFullTodo = (title, body) => {
     const newTodo = {
       title: title,
@@ -55,6 +63,15 @@ export default function App() {
     }
   };
 
+  /**
+   * Updates a given todo and replaces it
+   * in the allTodos state
+   * @param {Object} todo
+   * @param {String} title
+   * @param {String} body
+   * @return void
+   */
+
   const updateTodo = (todo, title, body) => {
     const updatedTodo = {
       ...todo,
@@ -69,6 +86,7 @@ export default function App() {
     });
     setDisplayedTodo({});
   };
+
   const editDisplay = isEditDisplayModal ? (
     <AddModal
       todo={displayedTodo}
@@ -82,6 +100,12 @@ export default function App() {
     ""
   );
 
+  /**
+   * Deletes a given todo from the allTodos state
+   * @param {Object} todo
+   * @return void
+   */
+
   const deleteTodo = (todo) => {
     setAllTodos((prevTodos) => {
       const newOutput = [];
@@ -91,8 +115,13 @@ export default function App() {
       setToStorage(newOutput);
       return newOutput;
     });
-    
   };
+
+  /**
+   * Changes the status of a given todo from the allTodos state
+   * @param {Object} todo
+   * @return void
+   */
 
   const changeStatus = (todo) => {
     setAllTodos((prev) => {

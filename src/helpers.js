@@ -1,3 +1,8 @@
+/**
+ * Constructs a timestamp
+ * @return {String} timestamp
+ */
+
 export function getTimestamp() {
   const d = new Date();
   const m = (d.getMonth() >= 10) ? d.getMonth() : '0' + d.getMonth();
@@ -17,10 +22,22 @@ export function getTimestamp() {
   return timestamp;
 }
 
+/**
+ * Sets todos into localStorage
+ * @param {Array[Objects]} items
+ * @return void
+ */
+
 export function setToStorage(items) {
   console.log(items);
   localStorage.setItem("allTodos", JSON.stringify(items));
 }
+
+/**
+ * Fetches todos from localStorage, parses, and returns them
+ * @param {Array[Objects]} items
+ * @return {Array[Objects]} todos
+ */
 
 export function getFromStorage() {
   return JSON.parse(window.localStorage.getItem("allTodos"));
