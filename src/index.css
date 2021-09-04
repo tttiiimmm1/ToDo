@@ -325,6 +325,21 @@ input {
   transition: 300ms;
 }
 
+.modal-wip {
+  background-color: rgb(230, 172, 14);
+  color: white;
+  border: 1px solid rgb(230, 172, 14);
+  box-shadow: 0.5px 1px rgba(230, 172, 14, 0.5);
+  align-items: flex-end;
+}
+
+.modal-wip:hover {
+  color: rgb(230, 172, 14);
+  background-color: white;
+  box-shadow: -0.5px -1px rgba(255, 254, 254, 0.5);
+  transition: 300ms;
+}
+
 .modal-delete-2 {
   font-size: 12px;
   font-weight: 700;
@@ -342,7 +357,9 @@ input {
   transition: 300ms;
 }
 
-.modal-wip {
+
+
+.modal-edit {
   font-size: 12px;
   font-weight: 700;
   color: rgb(150, 150, 150);
@@ -352,7 +369,7 @@ input {
   height: 25%;
 }
 
-.modal-wip:hover {
+.modal-edit:hover {
   font-size: 12px;
   color: rgb(178, 221, 184);
   transition: 300ms;

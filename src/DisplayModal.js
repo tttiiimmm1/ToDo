@@ -40,7 +40,7 @@ export default function DisplayModal({
             <h1>{todo.title}</h1>
           </div>
           <div className="modal-row1-buttons">
-            <button className="modal-wip" onClick={swapModals}>
+            <button className="modal-edit" onClick={swapModals}>
               edit
             </button>
             <button className="modal-delete-2" onClick={handleClose}>
@@ -59,9 +59,9 @@ export default function DisplayModal({
 
         <div className="modal-row4">
           <DefaultButton
-            type1="modal-done modal-button"
+            type1={todo.status ? "modal-wip modal-button": "modal-done modal-button"}
             action={handleChange}
-            text="Done it!"
+            text={todo.status ? "Return" : "Done it!"}
           />
           <DefaultButton
             type1="modal-delete modal-button"
