@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import DefaultButton from "./DefaultButton";
-import { getTimestamp } from "./helpers";
+import { getTimestamp, setToStorage } from "./helpers";
 //{} -> deconstructor
 
 export default function AddTodo({ setAllTodos, setIsEditDisplayModal }) {
@@ -20,7 +20,11 @@ export default function AddTodo({ setAllTodos, setIsEditDisplayModal }) {
         id,
         timestamp: getTimestamp(),
       };
-      setAllTodos((prevTodo) => [...prevTodo, newTodo]);
+      setAllTodos((prevTodo) => {
+        const newTodos = [...prevTodo, newTodo];
+        setToStorage(newTodos);
+        return newTodos;
+      });
       setTextInput("");
     }
   };

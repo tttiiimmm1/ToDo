@@ -12,3 +12,12 @@ export function getTimestamp() {
     d.getMinutes();
   return timestamp;
 }
+
+export function setToStorage(items) {
+  console.log(items);
+  localStorage.setItem("allTodos", JSON.stringify(items));
+}
+
+export function getFromStorage() {
+  return JSON.parse(window.localStorage.getItem("allTodos"));
+}

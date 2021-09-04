@@ -4,7 +4,7 @@ import Todo from "./Todo";
 import "./index.css";
 import DisplayModal from "./DisplayModal";
 import AddModal from "./AddModal";
-import { getTimestamp } from "./helpers";
+import { getTimestamp, setToStorage, getFromStorage } from "./helpers";
 
 const initialTodoState = {
   title: "",
@@ -15,9 +15,11 @@ const initialTodoState = {
   id: "",
 };
 
+const storedTodos = getFromStorage();
+
 export default function App() {
   const [currentTodo, setCurrentTodo] = useState({});
-  const [allTodos, setAllTodos] = useState([]);
+  const [allTodos, setAllTodos] = useState(storedTodos || []);
   const [displayedTodo, setDisplayedTodo] = useState(initialTodoState);
   const [isDisplayModal, setIsDisplayModal] = useState(false);
   const [isEditDisplayModal, setIsEditDisplayModal] = useState(false);
@@ -44,7 +46,11 @@ export default function App() {
       id: new Date() + title,
     };
     if (title) {
-      setAllTodos((prev) => [...prev, newTodo]);
+      setAllTodos((prev) => {
+        const newTodos = [...prev, newTodo];
+        setToStorage(newTodos);
+        return newTodos;
+      });
       setDisplayedTodo({});
     }
   };
@@ -59,6 +65,7 @@ export default function App() {
       const removed = prev.filter((item) => item.id !== displayedTodo.id);
       return [...removed, updatedTodo];
     });
+    setToStorage(allTodos);
     setDisplayedTodo({});
   };
   const editDisplay = isEditDisplayModal ? (
@@ -78,10 +85,11 @@ export default function App() {
     setAllTodos((prevTodos) => {
       const newOutput = [];
       prevTodos.forEach((item) => {
-        if (item.id !== todo.id) newOutput.push(todo);
+        if (item.id !== todo.id) newOutput.push(item);
       });
       return newOutput;
     });
+    setToStorage(allTodos);
   };
 
   const changeStatus = (todo) => {
@@ -94,6 +102,7 @@ export default function App() {
       };
       return [...removed, updatedTodo];
     });
+    setToStorage(allTodos);
   };
 
   return (
